@@ -33,9 +33,14 @@ Each `Result` emitted by the worker pool records which `TimeSource` was used
 
 ## Supported formats
 
-EXIF parsing covers the formats most cameras and phones produce:
+phomv picks up these extensions:
 
 `.jpg`, `.jpeg`, `.png`, `.heic`, `.cr2`, `.nef`, `.arw`, `.dng`, `.tif`, `.tiff`.
+
+EXIF dates are read from JPEG, TIFF, and HEIC. RAW formats built on TIFF
+(`.cr2`, `.nef`, `.arw`, `.dng`) should work the same way but aren't covered by
+tests yet. HEIC (the iPhone default) needs **v0.1.2 or later**; earlier versions
+dated HEIC photos by mtime. PNG is always dated by mtime.
 
 Other extensions are skipped during the directory walk.
 
