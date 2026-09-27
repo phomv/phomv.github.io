@@ -34,7 +34,8 @@ Manifests are published from
 
 Grab the latest archive for your platform from the
 [releases page](https://github.com/phomv/phomv/releases). Archives are built for
-linux / darwin / windows on amd64 and arm64.
+linux and macOS on amd64 and arm64, and Windows on amd64. Each archive also
+contains shell completions (`completions/`) and man pages (`manpages/`).
 
 ## From source
 
@@ -55,6 +56,21 @@ make release     # cross-compiles to ./dist for linux/macOS/windows
 ```
 
 Requires Go **1.24+**.
+
+## Shell completions and man pages
+
+Homebrew installs both automatically (v0.2.0+). Otherwise, copy them from the
+release archive, or generate completions yourself:
+
+```sh
+phomv completion bash > /etc/bash_completion.d/phomv          # bash
+phomv completion zsh > "${fpath[1]}/_phomv"                   # zsh
+phomv completion fish > ~/.config/fish/completions/phomv.fish # fish
+phomv completion powershell | Out-String | Invoke-Expression  # PowerShell
+```
+
+From a source checkout, `make docs` writes both into `./completions` and
+`./manpages`.
 
 ## Verify
 
